@@ -8,6 +8,7 @@ const app = express();
 const PORT = 3000;
 
 // Ruta básica
+// Solicitud http://localhost:3000/
 app.get('/', (req, res) => {
     res.send('¡Hello, world!');
 });
@@ -20,8 +21,8 @@ app.listen(PORT, () => {
 
 // Express, ruteo básico
 // Ruta GET para el home
-// Solicitud http://localhost:3000/
-app.get('/', (req, res) => {
+// Solicitud http://localhost:3000/home
+app.get('/home', (req, res) => {
     res.send('Página de inicio');
 });
 
@@ -39,10 +40,10 @@ app.get('/user/:id', (req, res) => {
 });
 
 // Ruteo con multiples parámetros
-// Solicitud http://localhost:3000/products/electronics/456
+// Solicitud http://localhost:3000/product/electronics/456
 app.get('/product/:category/:id', (req, res) => {
     const { category, id } = req.params;
-    res.send(`Categoria ${category} ID del producto ${id}`);
+    res.send(`Categoria: ${category} - ID del producto: ${id}`);
 });
 
 // Ruteo con parámetro de consulta (URL)
@@ -52,7 +53,7 @@ app.get('/search', (req, res) => {
     res.send(`Resultado de la busqueda para ${query}`);
 });
 
-// --> Ruteo con multiples parametros de consulta
+// Ruteo con multiples parametros de consulta
 // Solicitud http://localhost:3000/filter?type=book&minPrice=10&maxPrice=50
 app.get('/filter', (req, res) => {
     const { type, minPrice, maxPrice } = req.query;
